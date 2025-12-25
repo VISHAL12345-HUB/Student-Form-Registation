@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 25px;
+            width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Registration</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        
+        <label>Full Name</label>
+        <input type="text" id="name">
+        <span class="error" id="nameError"></span>
+
+        <label>Email</label>
+        <input type="email" id="email">
+        <span class="error" id="emailError"></span>
+
+        <label>Phone Number</label>
+        <input type="text" id="phone">
+        <span class="error" id="phoneError"></span>
+
+        <label>Course</label>
+        <select id="course">
+            <option value="">Select Course</option>
+            <option>BCA</option>
+            <option>BSc IT</option>
+            <option>BCA (DS)</option>
+        </select>
+        <span class="error" id="courseError"></span>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        let valid = true;
+
+        document.getElementById("nameError").innerHTML = "";
+        document.getElementById("emailError").innerHTML = "";
+        document.getElementById("phoneError").innerHTML = "";
+        document.getElementById("courseError").innerHTML = "";
+
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let course = document.getElementById("course").value;
+
+        if (name === "") {
+            document.getElementById("nameError").innerHTML = "Name is required";
+            valid = false;
+        }
+
+        if (email === "") {
+            document.getElementById("emailError").innerHTML = "Email is required";
+            valid = false;
+        }
+
+        if (phone === "" || phone.length !== 10 || isNaN(phone)) {
+            document.getElementById("phoneError").innerHTML = "Enter valid 10-digit phone number";
+            valid = false;
+        }
+
+        if (course === "") {
+            document.getElementById("courseError").innerHTML = "Please select a course";
+            valid = false;
+        }
+
+        if (valid) {
+            alert("Registration Successful!");
+        }
+
+        return valid;
+    }
+</script>
+
+</body>
+</html>
